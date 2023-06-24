@@ -58,17 +58,17 @@
         <h2>Upload photos</h2>
         <div>
             <form action="/api/images/upload"
-                  
-                 id="image-upload"
+                  id="image-upload"
                  method="post"
                  enctype="multipart/form">
-                <div class="dropzone needsclick dz-clickable">
-                    <div class="dz-message needsclick">
-                        <span class="note needsclick">
-                            Drop files here or click to upload.
-                        </span>
-                    </div>
-                </div>
+                @* <div class="dropzone needsclick dz-clickable"> *@
+                @*     <div class="dz-message needsclick"> *@
+                @*         <span class="note needsclick"> *@
+                @*             Drop files here or click to upload. *@
+                @*         </span> *@
+                @*     </div> *@
+                @* </div> *@
+                <input type="file" value="Select file"/>
                 <input type="submit" class="btn btn-primary" value="Upload">
             </form>
         </div>
