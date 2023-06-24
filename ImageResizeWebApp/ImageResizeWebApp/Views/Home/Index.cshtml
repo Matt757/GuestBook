@@ -59,16 +59,15 @@
         <div>
             <form action="/api/images/upload"
                   id="image-upload"
+                  class="dropzone needsclick dz-clickable"
                  method="post"
                  enctype="multipart/form">
-                @* <div class="dropzone needsclick dz-clickable"> *@
-                @*     <div class="dz-message needsclick"> *@
-                @*         <span class="note needsclick"> *@
-                @*             Drop files here or click to upload. *@
-                @*         </span> *@
-                @*     </div> *@
-                @* </div> *@
-                <input type="file" value="Select file"/>
+                    <div class="dz-message needsclick">
+                        <span class="note needsclick">
+                            Drop files here or click to upload.
+                        </span>
+                    </div>
+                
                 <input type="submit" class="btn btn-primary" value="Upload">
             </form>
         </div>
