@@ -57,7 +57,6 @@
         <h2>Upload photos</h2>
         <div>
             <form action="/api/images/upload"
-                   
                   id="image-upload"
                   method="post"
                   enctype="multipart/form">
@@ -99,11 +98,11 @@
 <script>
     // init gallery for later use
     var gallery;
-    $(document).ready(function () {
-        $("#image-upload").submit(function() {
-            alert("Submited");
-        })
-    })
+    // $(document).ready(function () {
+    //     $("#image-upload").submit(function() {
+    //         alert("Submited");
+    //     })
+    // })
 
     // Grab links for images from backend api
     function fetchImageLinks() {
