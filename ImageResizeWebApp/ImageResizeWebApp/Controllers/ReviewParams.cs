@@ -1,5 +1,3 @@
-namespace DefaultNamespace;
-
 public class ReviewParams
 {
     public string Review { get; set; }
