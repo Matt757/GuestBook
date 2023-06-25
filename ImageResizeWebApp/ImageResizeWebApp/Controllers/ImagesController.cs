@@ -109,7 +109,7 @@ namespace ImageResizeWebApp.Controllers
                 review = userReview,
                 imageName = userImageName
             };
-            response = AzureTables.InsertEntity("blobstoragegb", "DefaultEndpointsProtocol=https;AccountName=blobstoragegb;AccountKey=RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==;EndpointSuffix=core.windows.net", "tablestoragegb", JsonConvert.SerializeObject(reviewEntity));
+            response = AzureTables.InsertEntity("blobstoragegb", "DefaultEndpointsProtocol=http;AccountName=blobstoragegb;AccountKey=RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==;EndpointSuffix=core.windows.net", "tablestoragegb", JsonConvert.SerializeObject(reviewEntity));
         }
         //     string storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=blobstoragegb;AccountKey=RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==;EndpointSuffix=core.windows.net";
         //     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(storageConnectionString);
