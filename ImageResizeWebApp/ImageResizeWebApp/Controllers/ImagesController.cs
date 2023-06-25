@@ -121,7 +121,7 @@ namespace ImageResizeWebApp.Controllers
             
             // Connect to Storage
             var client = account.CreateCloudTableClient();
-            // var table = client.GetTableReference("tablestoragegb");
+            var table = client.GetTableReference("tablestoragegb");
             
             // var insertOperation = TableOperation.Insert(obj);
             // table.Execute(insertOperation);
