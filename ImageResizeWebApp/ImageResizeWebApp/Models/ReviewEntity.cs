@@ -1,4 +1,4 @@
-using Microsoft.Azure.Data.Table;
+using Azure.Data.Table;
 
 public class ReviewEntity : TableEntity
 {
