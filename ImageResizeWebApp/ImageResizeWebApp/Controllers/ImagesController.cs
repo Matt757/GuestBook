@@ -104,11 +104,11 @@ namespace ImageResizeWebApp.Controllers
         {
             string review = files.FirstOrDefault();
             string imageName; 
-            if (fileNames.Count >= 2)
-            {
-                // Get the second element using ElementAt() method (index 1)
-                imageName = fileNames.ElementAt(1);
-            }
+            // if (fileNames.Count >= 2)
+            // {
+            //     // Get the second element using ElementAt() method (index 1)
+            //     imageName = fileNames.ElementAt(1);
+            // }
             // foreach (var formFile in files)
             // {
             //     if (StorageHelper.IsString(formFile))
@@ -126,29 +126,29 @@ namespace ImageResizeWebApp.Controllers
             //         return new UnsupportedMediaTypeResult();
             //     }
             // }
-            var obj = new ReviewEntity()
-            {
-                PartitionKey = Guid.NewGuid().ToString(), // Must be unique
-                RowKey = Guid.NewGuid().ToString(), // Must be unique
-                Review = review,
-                ImageName = imageName
-            };
-            
-            // Get Storage Information
-            var accountName = "blobstoragegb";
-            var accountKey = "RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==";
-            
-            // Set Auth
-            var creds = new StorageCredentials(accountName, accountKey);
-            var account = new CloudStorageAccount(creds, useHttps: true);
-            
-            // Connect to Storage
-            var client = account.CreateCloudTableClient();
-            var table = client.GetTableReference("tablestoragegb");
-            
-            var insertOperation = TableOperation.InsertOrMerge(obj);
-            table.ExecuteAsync(insertOperation);
-            
+            // var obj = new ReviewEntity()
+            // {
+            //     PartitionKey = Guid.NewGuid().ToString(), // Must be unique
+            //     RowKey = Guid.NewGuid().ToString(), // Must be unique
+            //     Review = review,
+            //     ImageName = imageName
+            // };
+            //
+            // // Get Storage Information
+            // var accountName = "blobstoragegb";
+            // var accountKey = "RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==";
+            //
+            // // Set Auth
+            // var creds = new StorageCredentials(accountName, accountKey);
+            // var account = new CloudStorageAccount(creds, useHttps: true);
+            //
+            // // Connect to Storage
+            // var client = account.CreateCloudTableClient();
+            // var table = client.GetTableReference("tablestoragegb");
+            //
+            // var insertOperation = TableOperation.InsertOrMerge(obj);
+            // table.ExecuteAsync(insertOperation);
+            //
             return new AcceptedResult();
         }
     }
