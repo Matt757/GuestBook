@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Models;
-using Azure.Data.Table;
+using Azure.Data.Tables;
 
 namespace ImageResizeWebApp.Controllers
 {

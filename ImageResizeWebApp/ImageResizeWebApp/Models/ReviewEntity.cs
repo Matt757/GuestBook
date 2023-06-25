@@ -1,6 +1,6 @@
-using Azure.Data.Table;
+using Azure.Data.Tables;
 
-public class ReviewEntity : TableEntity
+public class ReviewEntity : ITableEntity
 {
     public ReviewEntity(string partitionKey, string rowKey)
     {
