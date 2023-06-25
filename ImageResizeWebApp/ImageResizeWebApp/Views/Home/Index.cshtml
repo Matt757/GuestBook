@@ -132,13 +132,12 @@
 
     // Grab links for images from backend api
     function fetchImageLinks() {
-        fetch('https://webappgb.azurewebsites.net/api/images/upload', {
-          Method: 'POST',
+        fetch('https://webappgb.azurewebsites.net/api/images/review/Apetri Stefan-Cosmin IMG_1080.jpg', {
+          Method: 'GET',
           Headers: {
             Accept: 'application.json',
             'Content-Type': 'application/json'
           },
-          Body: body,
           Cache: 'default'
         })
         // Fetch images
