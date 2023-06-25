@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage.Table;
 
 namespace ImageResizeWebApp.Controllers
 {
@@ -105,6 +107,22 @@ namespace ImageResizeWebApp.Controllers
                 Review = review,
                 ImageName = imageName
             };
+            
+            // Get Storage Information
+            var accountName = "blobstoragegb";
+            var creds = "RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==";
+
+            // Set Auth
+            var creds = new StorageCredentials(accountName, accountKey);
+            var account = new CloudStorageAccount(creds, useHttps: true);
+
+            // Connect to Storage
+            var client = account.CreateCloudTableClient();
+            var table = client.GetTableReference("tablestoragegb");
+            
+            var insertOperation = TableOperation.Insert(obj);
+            table.Execute(insertOperation);
+            
             return null;
         }
     }
