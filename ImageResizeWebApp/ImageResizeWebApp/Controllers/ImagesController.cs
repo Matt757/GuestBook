@@ -112,9 +112,9 @@ namespace ImageResizeWebApp.Controllers
             var accountName = "blobstoragegb";
             var creds = "RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==";
 
-            // // Set Auth
-            // var creds = new StorageCredentials(accountName, accountKey);
-            // var account = new CloudStorageAccount(creds, useHttps: true);
+            // Set Auth
+            var creds = new StorageCredentials(accountName, accountKey);
+            var account = new CloudStorageAccount(creds, useHttps: true);
             //
             // // Connect to Storage
             // var client = account.CreateCloudTableClient();
