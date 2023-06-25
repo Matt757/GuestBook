@@ -100,31 +100,31 @@ namespace ImageResizeWebApp.Controllers
         }
 
         [HttpPost("review")]
-        public async Task<IActionResult> AddReview(string review, string imageName)
+        public async Task<IActionResult> AddReview(ICollection<IFormFile> files)
         {
-            var obj = new ReviewEntity()
-            {
-                PartitionKey = Guid.NewGuid().ToString(), // Must be unique
-                RowKey = Guid.NewGuid().ToString(), // Must be unique
-                Review = review,
-                ImageName = imageName
-            };
-            
-            // Get Storage Information
-            var accountName = "blobstoragegb";
-            var accountKey = "RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==";
-
-            // Set Auth
-            var creds = new StorageCredentials(accountName, accountKey);
-            var account = new CloudStorageAccount(creds, useHttps: true);
-            
-            // Connect to Storage
-            var client = account.CreateCloudTableClient();
-            var table = client.GetTableReference("tablestoragegb");
-            
-            var insertOperation = TableOperation.InsertOrMerge(obj);
-            table.ExecuteAsync(insertOperation);
-            
+            // var obj = new ReviewEntity()
+            // {
+            //     PartitionKey = Guid.NewGuid().ToString(), // Must be unique
+            //     RowKey = Guid.NewGuid().ToString(), // Must be unique
+            //     Review = review,
+            //     ImageName = imageName
+            // };
+            //
+            // // Get Storage Information
+            // var accountName = "blobstoragegb";
+            // var accountKey = "RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==";
+            //
+            // // Set Auth
+            // var creds = new StorageCredentials(accountName, accountKey);
+            // var account = new CloudStorageAccount(creds, useHttps: true);
+            //
+            // // Connect to Storage
+            // var client = account.CreateCloudTableClient();
+            // var table = client.GetTableReference("tablestoragegb");
+            //
+            // var insertOperation = TableOperation.InsertOrMerge(obj);
+            // table.ExecuteAsync(insertOperation);
+            //
             return new AcceptedResult();
         }
     }
