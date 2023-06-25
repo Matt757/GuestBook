@@ -114,7 +114,7 @@ namespace ImageResizeWebApp.Controllers
 
             // Set Auth
             var creds = new StorageCredentials(accountName, accountKey);
-            var account = new CloudStorageAccount(creds, useHttps: true);
+            // var account = new CloudStorageAccount(creds, useHttps: true);
             //
             // // Connect to Storage
             // var client = account.CreateCloudTableClient();
