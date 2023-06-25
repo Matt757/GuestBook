@@ -55,16 +55,20 @@
     <div class="box content">
         <hr>
         <h2>Upload photos</h2>
-        <div>
-            <form action="/api/images/upload"
-                  id="image-upload"
-                  method="post"
-                  enctype="multipart/form">
-
-                <input type="file" id="img" name="img" accept="image/*">
-                <input type="submit" value="Upload">
-            </form>
-        </div>
+         <div>
+                    <form action="/api/images/upload"
+                         class="dropzone needsclick dz-clickable" 
+                         id="image-upload"
+                         method="post"
+                         enctype="multipart/form">
+        
+                        <div class="dz-message needsclick">
+                            <span class="note needsclick">
+                                Drop files here or click to upload.
+                            </span>
+                        </div>
+                    </form>
+                </div>
         <p id="photoName"></p>
         <h2>Generated Thumbnails</h2>
             <!-- <p><span id="gallery-note">Gallery refreshes from storage container image links every 5 seconds.</span></p> -->
