@@ -115,8 +115,11 @@ namespace ImageResizeWebApp.Controllers
             var client = account.CreateCloudTableClient();
             var table = client.GetTableReference("tablestoragegb");
             
-            var insertOperation = TableOperation.InsertOrMerge(obj);
-            // table.ExecuteAsync(insertOperation);
+            // Define the filter condition based on the column value
+            string filter = $"ColumnName eq '{columnValue}'";
+
+            // Retrieve entities from the table that match the filter condition
+            AsyncPageable<TableEntity> entities = tableClient.QueryAsync<TableEntity>(filter);
             
             return new ObjectResult(imageName);
         }
