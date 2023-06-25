@@ -115,11 +115,19 @@ namespace ImageResizeWebApp.Controllers
             var client = account.CreateCloudTableClient();
             var table = client.GetTableReference("tablestoragegb");
             
-            // Define the filter condition based on the column value
-            string filter = $"ColumnName eq '{columnValue}'";
-
-            // Retrieve entities from the table that match the filter condition
-            AsyncPageable<TableEntity> entities = table.QueryAsync<TableEntity>(filter);
+            // // Define the filter condition based on the column value
+            // string filter = $"ColumnName eq '{columnValue}'";
+            //
+            // // Retrieve entities from the table that match the filter condition
+            // AsyncPageable<TableEntity> entities = table.QueryAsync<TableEntity>(filter);
+            // //TODO add value to table to check connection to the table
+            var obj = new ReviewEntity()
+            {
+                PartitionKey = Guid.NewGuid().ToString(), // Must be unique
+                RowKey = Guid.NewGuid().ToString(), // Must be unique
+                Review = review,
+                ImageName = imageName
+            };
             
             return new ObjectResult(imageName);
         }
