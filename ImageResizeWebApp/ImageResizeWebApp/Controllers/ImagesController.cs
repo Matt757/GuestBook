@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage.Table;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.WindowsAzure.Storage.TableResult;
 using Microsoft.WindowsAzure.Storage;
 
 
@@ -124,7 +125,7 @@ namespace ImageResizeWebApp.Controllers
             var table = client.GetTableReference("tablestoragegb");
             
             var insertOperation = TableOperation.InsertOrMerge(obj);
-            table.ExecuteAsync(insertOperation);
+            TableResult table.ExecuteAsync(insertOperation);
             
             return new AcceptedResult();
         }
