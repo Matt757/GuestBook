@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.Azure.Data.Table;
 
 namespace ImageResizeWebApp.Controllers
 {
@@ -93,44 +94,44 @@ namespace ImageResizeWebApp.Controllers
             }
         }
         
-        [HttpPost("/api/images/review")]
-        public async Task<IActionResult> AddReview(string userReview, string userImageName)
-        {
-            string storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=blobstoragegb;AccountKey=RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==;EndpointSuffix=core.windows.net";
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(storageConnectionString);
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-            
-            string tableName = "tablestoragegb";
-            CloudTable table = tableClient.GetTableReference(tableName);
-            await table.CreateIfNotExistsAsync();
-            
-            Guid uuid = Guid.NewGuid();
-            string partitionKey = uuid.ToString();
-            uuid = Guid.NewGuid()
-            string rowKey = uuid.ToString();
-
-            var entity = new MyEntity(partitionKey, rowKey)
-            {
-                review = userReview,
-                imageName = userImageName
-            };
-            // // Create a reference to the table
-            // CloudTable table = tableClient.GetTableReference(tableName);
-            //
-            // // Create a new ReviewEntity instance
-            // var reviewEntity = new ReviewEntity("PartitionKey", "RowKey")
-            // {
-            //     Review = review,
-            //     ImageName = imageName
-            // };
-            //
-            // // Create an Insert operation
-            // TableOperation insertOperation = TableOperation.Insert(reviewEntity);
-            //
-            // // Execute the operation
-            // await table.ExecuteAsync(insertOperation);
-            //
-            // return Ok("Review added to table storage.");
-        }
+        // [HttpPost("/api/images/review")]
+        // public async Task<IActionResult> AddReview(string userReview, string userImageName)
+        // {
+        //     string storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=blobstoragegb;AccountKey=RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==;EndpointSuffix=core.windows.net";
+        //     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(storageConnectionString);
+        //     CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+        //     
+        //     string tableName = "tablestoragegb";
+        //     CloudTable table = tableClient.GetTableReference(tableName);
+        //     await table.CreateIfNotExistsAsync();
+        //     
+        //     Guid uuid = Guid.NewGuid();
+        //     string partitionKey = uuid.ToString();
+        //     uuid = Guid.NewGuid()
+        //     string rowKey = uuid.ToString();
+        //
+        //     var entity = new MyEntity(partitionKey, rowKey)
+        //     {
+        //         review = userReview,
+        //         imageName = userImageName
+        //     };
+        //     // // Create a reference to the table
+        //     // CloudTable table = tableClient.GetTableReference(tableName);
+        //     //
+        //     // // Create a new ReviewEntity instance
+        //     // var reviewEntity = new ReviewEntity("PartitionKey", "RowKey")
+        //     // {
+        //     //     Review = review,
+        //     //     ImageName = imageName
+        //     // };
+        //     //
+        //     // // Create an Insert operation
+        //     // TableOperation insertOperation = TableOperation.Insert(reviewEntity);
+        //     //
+        //     // // Execute the operation
+        //     // await table.ExecuteAsync(insertOperation);
+        //     //
+        //     // return Ok("Review added to table storage.");
+        // }
     }
 }
