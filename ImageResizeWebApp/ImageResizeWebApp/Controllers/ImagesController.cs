@@ -119,7 +119,7 @@ namespace ImageResizeWebApp.Controllers
             string filter = $"ColumnName eq '{columnValue}'";
 
             // Retrieve entities from the table that match the filter condition
-            AsyncPageable<TableEntity> entities = tableClient.QueryAsync<TableEntity>(filter);
+            AsyncPageable<TableEntity> entities = table.QueryAsync<TableEntity>(filter);
             
             return new ObjectResult(imageName);
         }
