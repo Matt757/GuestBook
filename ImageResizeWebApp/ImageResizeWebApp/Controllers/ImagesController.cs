@@ -94,5 +94,17 @@ namespace ImageResizeWebApp.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("review")]
+        public async Task<IActionResult> AddReview(string review, string imageName)
+        {
+            var obj = new ReviewEntity()
+            {
+                PartitionKey = Guid.NewGuid().ToString(), // Must be unique
+                RowKey = Guid.NewGuid().ToString(), // Must be unique
+                Review = review,
+                ImageName = imageName
+            };
+        }
     }
 }
