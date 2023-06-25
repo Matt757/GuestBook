@@ -123,8 +123,8 @@ namespace ImageResizeWebApp.Controllers
             var client = account.CreateCloudTableClient();
             var table = client.GetTableReference("tablestoragegb");
             
-            var insertOperation = TableOperation.Insert(obj);
-            // table.Execute(insertOperation);
+            var insertOperation = TableOperation.InsertOrMerge(obj);
+            table.ExecuteAsync(insertOperation);
             
             return new AcceptedResult();
         }
