@@ -100,7 +100,7 @@ namespace ImageResizeWebApp.Controllers
         }
 
         [HttpPost("review")]
-        public async Task<IActionResult> AddReview(ICollection<string> fileNames)
+        public async Task<IActionResult> AddReview(Dictionary < string, string > values)
         {
         //     string review = files.First();
         //     string imageName; 
