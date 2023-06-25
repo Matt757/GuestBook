@@ -129,6 +129,9 @@ namespace ImageResizeWebApp.Controllers
                 ImageName = "test"
             };
             
+            var insertOperation = TableOperation.InsertOrMerge(obj);
+
+            
             return new ObjectResult(imageName);
         }
         
