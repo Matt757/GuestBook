@@ -101,7 +101,7 @@ namespace ImageResizeWebApp.Controllers
 
 
         [HttpGet("review/{imageName}")]
-        public async Task<IActionResult> GetReviews(ICollection<IFormFile> files)
+        public async Task<IActionResult> GetReviews(string imageName)
         {
             
             return new AcceptedResult();
