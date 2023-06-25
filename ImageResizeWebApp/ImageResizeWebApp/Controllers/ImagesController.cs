@@ -102,8 +102,8 @@ namespace ImageResizeWebApp.Controllers
         [HttpPost("review")]
         public async Task<IActionResult> AddReview(ReviewParams reviewParams)
         {
-            string review = reviewParams.getReview();
-            string imageName = reviewParams.getImageName(); 
+            // string review = reviewParams.getReview();
+            // string imageName = reviewParams.getImageName(); 
             // if (fileNames.Count >= 2)
             // {
             //     // Get the second element using ElementAt() method (index 1)
