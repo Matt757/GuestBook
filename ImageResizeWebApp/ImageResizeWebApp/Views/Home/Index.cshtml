@@ -132,6 +132,15 @@
 
     // Grab links for images from backend api
     function fetchImageLinks() {
+        fetch('https://webappgb.azurewebsites.net/api/images/upload', {
+          Method: 'POST',
+          Headers: {
+            Accept: 'application.json',
+            'Content-Type': 'application/json'
+          },
+          Body: body,
+          Cache: 'default'
+        })
         // Fetch images
         $.get("api/Images/thumbnails", function(fetchedImageLinks) {
             console.log(fetchedImageLinks)
