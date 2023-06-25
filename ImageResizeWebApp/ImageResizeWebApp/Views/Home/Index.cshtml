@@ -106,64 +106,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
 <script type="module">
-     
-     
-    const { TableClient, AzureNamedKeyCredential } = require("@azure/data-tables");
-    
-    
-    
-    function fetchImageLinks() {
-        // Fetch images
-        $.get("api/Images/thumbnails", function(fetchedImageLinks) {
-            console.log(fetchedImageLinks)
-    
-            // Check if anything is in there
-            if ( _.isEmpty(fetchedImageLinks) ){
-                console.log('empty fetched')
-                // do nothing  
-            } else {
-                // // Check if we have a gallery initialized
-                // if ( _.isEmpty(gallery) ) {
-                //     // initialize gallery
-                //     gallery = blueimp.Gallery(
-                //                 fetchedImageLinks, // gallery links array
-                //                 {
-                //                     container: '#blueimp-gallery-carousel',
-                //                     carousel: true
-                //                 } // gallery options
-                //             );                    
-                // } else {
-                //     // check if images are equal to array
-                //     console.log('currently in gallery:')
-                //     console.log(gallery.list)
-                //     var imageLinksEqual = _.isEqual(_.sortBy(gallery.list.map(s => s.split("?")[0])), _.sortBy(fetchedImageLinks.map(s => s.split("?")[0])))
-                //     if ( imageLinksEqual ) {
-                //         console.log('images arr are equal')
-                //         // do nothing
-                //     } else {
-                //         console.log('images arr are not equal')
-                //
-                //         // update gallery with new image urls. Only compare actual url without SAS token query string
-                //         var newImageLinks = _.difference(fetchedImageLinks.map(s => s.split("?")[0]), gallery.list.map(s => s.split("?")[0]))
-                //
-                //         console.log('differene is: ')
-                //         console.log(newImageLinks)
-                //         // Only add new images
-                //         gallery.add(newImageLinks);
-                //
-                //         // Force image load
-                //         gallery.next();
-                //     }
-                // }       
-                const modifiedLinks = fetchedImageLinks.map(s => s.split("?")[0]);
-                const resultArray = Array.from(modifiedLinks);
-                resultArray.forEach(function (imageLink) {
-                    FetchReview.fetchRowByColumn("tablestoragegb", "imageName", imageLink)
-                    $("#stored-images").append("<img src=\"" + imageLink + "\" alt=\"Italian Trulli\"><br>")
-                })
-            }
-        });
-    }
+    import { TableClient, AzureNamedKeyCredential } from "@azure/data-tables";
     
     async function fetchRowByColumn(tableName, columnName, columnValue) {
         const accountName = "blobstoragegb";
@@ -189,19 +132,19 @@
             console.log(entity);
         });
     }
-    
-    // Usage
-    const tableName = "tablestoragegb";
-    const columnName = "imageName";
-    const columnValue = "Apetri Stefan-Cosmin IMG_1080.jpg";
-    
-    fetchRowByColumn(tableName, columnName, columnValue)
-        .then(() => {
-            console.log("Fetch completed.");
-        })
-        .catch(error => {
-            console.error("Error fetching row:", error);
-        });
+    //
+    // // Usage
+    // const tableName = "tablestoragegb";
+    // const columnName = "imageName";
+    // const columnValue = "Apetri Stefan-Cosmin IMG_1080.jpg";
+    //
+    // fetchRowByColumn(tableName, columnName, columnValue)
+    //     .then(() => {
+    //         console.log("Fetch completed.");
+    //     })
+    //     .catch(error => {
+    //         console.error("Error fetching row:", error);
+    //     });
         
     // init gallery for later use
     var gallery;
