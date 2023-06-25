@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Models;
+using Microsoft.Azure.Data.Table;
 
 namespace ImageResizeWebApp.Controllers
 {
@@ -92,10 +94,23 @@ namespace ImageResizeWebApp.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        
-        // [HttpPost("/api/images/review")]
-        // public async Task<IActionResult> AddReview(string userReview, string userImageName)
-        // {
+
+        [HttpPost("/api/images/review")]
+        public async Task<IActionResult> AddReview(string userReview, string userImageName)
+        {
+            
+            // Create a new ReviewEntity instance
+            Guid uuid = Guid.NewGuid();
+            string partitionKey = uuid.ToString();
+            uuid = Guid.NewGuid()
+            string rowKey = uuid.ToString();
+            var reviewEntity = new ReviewEntity(partitionKey, rowKey)
+            {
+                review = userReview,
+                imageName = userImageName
+            };
+            response = AzureTables.InsertEntity("blobstoragegb", "DefaultEndpointsProtocol=https;AccountName=blobstoragegb;AccountKey=RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==;EndpointSuffix=core.windows.net", "tablestoragegb", JsonConvert.SerializeObject(reviewEntity));
+        }
         //     string storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=blobstoragegb;AccountKey=RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==;EndpointSuffix=core.windows.net";
         //     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(storageConnectionString);
         //     CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
