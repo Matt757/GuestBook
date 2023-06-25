@@ -121,13 +121,13 @@ namespace ImageResizeWebApp.Controllers
             // // Retrieve entities from the table that match the filter condition
             // AsyncPageable<TableEntity> entities = table.QueryAsync<TableEntity>(filter);
             // //TODO add value to table to check connection to the table
-            // var obj = new ReviewEntity()
-            // {
-            //     PartitionKey = Guid.NewGuid().ToString(), // Must be unique
-            //     RowKey = Guid.NewGuid().ToString(), // Must be unique
-            //     Review = review,
-            //     ImageName = imageName
-            // };
+            var obj = new ReviewEntity()
+            {
+                PartitionKey = Guid.NewGuid().ToString(), // Must be unique
+                RowKey = Guid.NewGuid().ToString(), // Must be unique
+                Review = "test",
+                ImageName = "test"
+            };
             
             return new ObjectResult(imageName);
         }
