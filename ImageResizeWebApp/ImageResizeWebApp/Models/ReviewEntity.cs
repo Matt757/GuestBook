@@ -1,12 +1,12 @@
-using Azure.Data.Tables;
+// using Azure.Data.Tables;
 
-public class ReviewEntity : ITableEntity
+public class ReviewEntity 
 {
-    public ReviewEntity(string partitionKey, string rowKey)
-    {
-        PartitionKey = partitionKey;
-        RowKey = rowKey;
-    }
+    // public ReviewEntity(string partitionKey, string rowKey)
+    // {
+    //     PartitionKey = partitionKey;
+    //     RowKey = rowKey;
+    // }
 
     public ReviewEntity() { } // Required for deserialization
 
