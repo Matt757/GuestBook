@@ -23,75 +23,53 @@ namespace ImageResizeWebApp.Controllers
 
         // POST /api/images/upload
         [HttpPost("[action]")]
-        public async Task<IActionResult> Upload(IFormFile file)
+        public async Task<IActionResult> Upload(ICollection<IFormFile> files)
         {
             bool isUploaded = false;
-            if (StorageHelper.IsImage(file))
+
+            try
             {
-                if (file.Length > 0)
+                if (files.Count == 0)
+                    return BadRequest("No files received from the upload");
+
+                if (storageConfig.AccountKey == string.Empty || storageConfig.AccountName == string.Empty)
+                    return BadRequest("sorry, can't retrieve your azure storage details from appsettings.js, make sure that you add azure storage details there");
+
+                if (storageConfig.ImageContainer == string.Empty)
+                    return BadRequest("Please provide a name for your image container in the azure blob storage");
+
+                foreach (var formFile in files)
                 {
-                    using (Stream stream = file.OpenReadStream())
+                    if (StorageHelper.IsImage(formFile))
                     {
-                        isUploaded = await StorageHelper.UploadFileToStorage(stream, file.FileName, storageConfig);
+                        if (formFile.Length > 0)
+                        {
+                            using (Stream stream = formFile.OpenReadStream())
+                            {
+                                isUploaded = await StorageHelper.UploadFileToStorage(stream, formFile.FileName, storageConfig);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return new UnsupportedMediaTypeResult();
                     }
                 }
-            }
-            else
-            {
-                return new UnsupportedMediaTypeResult();
-            }
-            if (isUploaded)
-            {
-                if (storageConfig.ThumbnailContainer != string.Empty)
-                    return new AcceptedAtActionResult("GetThumbNails", "Images", null, null);
+
+                if (isUploaded)
+                {
+                    if (storageConfig.ThumbnailContainer != string.Empty)
+                        return new AcceptedAtActionResult("GetThumbNails", "Images", null, null);
+                    else
+                        return new AcceptedResult();
+                }
                 else
-                    return new AcceptedResult();
+                    return BadRequest("Look like the image couldnt upload to the storage");
             }
-            else
-                return BadRequest("Look like the image couldnt upload to the storage");
-            // try
-            // {
-            //     if (files.Count == 0)
-            //         return BadRequest("No files received from the upload");
-            //
-            //     if (storageConfig.AccountKey == string.Empty || storageConfig.AccountName == string.Empty)
-            //         return BadRequest("sorry, can't retrieve your azure storage details from appsettings.js, make sure that you add azure storage details there");
-            //
-            //     if (storageConfig.ImageContainer == string.Empty)
-            //         return BadRequest("Please provide a name for your image container in the azure blob storage");
-            //
-            //     foreach (var formFile in files)
-            //     {
-            //         if (StorageHelper.IsImage(formFile))
-            //         {
-            //             if (formFile.Length > 0)
-            //             {
-            //                 using (Stream stream = formFile.OpenReadStream())
-            //                 {
-            //                     isUploaded = await StorageHelper.UploadFileToStorage(stream, formFile.FileName, storageConfig);
-            //                 }
-            //             }
-            //         }
-            //         else
-            //         {
-            //             return new UnsupportedMediaTypeResult();
-            //         }
-            //     }
-            //
-            //     if (isUploaded)
-            //     {
-            //         if (storageConfig.ThumbnailContainer != string.Empty)
-            //             return new AcceptedAtActionResult("GetThumbNails", "Images", null, null);
-            //         else
-            //             return new AcceptedResult();
-            //     }
-            //     else
-            //         return BadRequest("Look like the image couldnt upload to the storage");
-            // }
-            // catch (Exception ex)
-            // {
-            //     return BadRequest(ex.Message);
-            // }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // GET /api/images/thumbnails
