@@ -100,7 +100,7 @@ namespace ImageResizeWebApp.Controllers
         }
 
         [HttpPost("review")]
-        public async Task<IActionResult> AddReview(string review)
+        public async Task<IActionResult> AddReview(ReviewParams reviewParams)
         {
             // string review = reviewParams.getReview();
             // string imageName = reviewParams.getImageName(); 
