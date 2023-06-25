@@ -102,7 +102,7 @@ namespace ImageResizeWebApp.Controllers
         [HttpPost("review")]
         public async Task<IActionResult> AddReview(ICollection<string> files)
         {
-            string review = files.FirstOrDefault();
+            string review = files.First();
             string imageName; 
             // if (fileNames.Count >= 2)
             // {
