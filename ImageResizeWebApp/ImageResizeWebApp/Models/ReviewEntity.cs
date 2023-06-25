@@ -10,6 +10,6 @@ public class ReviewEntity
 
     public ReviewEntity() { } // Required for deserialization
 
-    public string Review { get; set; }
-    public string ImageName { get; set; }
+    // public string Review { get; set; }
+    // public string ImageName { get; set; }
 }

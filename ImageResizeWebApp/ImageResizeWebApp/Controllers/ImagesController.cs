@@ -94,9 +94,9 @@ namespace ImageResizeWebApp.Controllers
             }
         }
 
-        [HttpPost("/api/images/review")]
-        public async Task<IActionResult> AddReview(string userReview, string userImageName)
-        {
+        // [HttpPost("/api/images/review")]
+        // public async Task<IActionResult> AddReview(string userReview, string userImageName)
+        // {
             
             // // Create a new ReviewEntity instance
             // Guid uuid = Guid.NewGuid();
@@ -109,7 +109,7 @@ namespace ImageResizeWebApp.Controllers
             //     imageName = userImageName
             // };
             // response = AzureTables.InsertEntity("blobstoragegb", "DefaultEndpointsProtocol=https;AccountName=blobstoragegb;AccountKey=RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==;EndpointSuffix=core.windows.net", "tablestoragegb", JsonConvert.SerializeObject(reviewEntity));
-        }
+        // }
         //     string storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=blobstoragegb;AccountKey=RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==;EndpointSuffix=core.windows.net";
         //     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(storageConnectionString);
         //     CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
