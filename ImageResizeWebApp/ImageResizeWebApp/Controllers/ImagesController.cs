@@ -124,9 +124,9 @@ namespace ImageResizeWebApp.Controllers
             var table = client.GetTableReference("tablestoragegb");
             
             var insertOperation = TableOperation.Insert(obj);
-            // table.Execute(insertOperation);
+            table.Execute(insertOperation);
             
-            return null;
+            return new AcceptedResult();
         }
     }
 }
