@@ -11,7 +11,7 @@ using Microsoft.WindowsAzure.Storage.Table;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Table;
 using Microsoft.WindowsAzure.Storage;
-
+using Microsoft.Extensions.Configuration;
 
 
 namespace ImageResizeWebApp.Controllers
@@ -19,6 +19,7 @@ namespace ImageResizeWebApp.Controllers
     [Route("api/[controller]")]
     public class ImagesController : Controller
     {
+        private IConfiguration _configuration;
         // make sure that appsettings.json is filled with the necessary details of the azure storage
         private readonly AzureStorageConfig storageConfig = null;
 
