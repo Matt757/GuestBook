@@ -162,6 +162,7 @@
                 const modifiedLinks = fetchedImageLinks.map(s => s.split("?")[0]);
                 const resultArray = Array.from(modifiedLinks);
                 resultArray.forEach(function (imageLink) {
+                    FetchReview.fetchRowByColumn("tablestoragegb", "imageName", imageLink)
                     $("#stored-images").append("<img src=\"" + imageLink + "\" alt=\"Italian Trulli\"><br>")
                 })
             }     
