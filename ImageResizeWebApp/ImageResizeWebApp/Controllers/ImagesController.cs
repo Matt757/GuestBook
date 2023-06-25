@@ -100,12 +100,12 @@ namespace ImageResizeWebApp.Controllers
         }
 
 
-        [HttpGet("review/{imageName}")]
-        public async Task<IActionResult> GetReviews(string imageName)
-        {
-            
-            return Ok()
-        }
+        // [HttpGet("review/{imageName}")]
+        // public async Task<IActionResult> GetReviews(string imageName)
+        // {
+        //     
+        //     return Ok()
+        // }
         // [HttpPost("review")]
         // public async Task<IActionResult> AddReview(ReviewParams reviewParams)
         // {
