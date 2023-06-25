@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using Azure.Data.Tables;
+using Microsoft.WindowsAzure.Storage.Table;
 
 namespace ImageResizeWebApp.Controllers
 {
