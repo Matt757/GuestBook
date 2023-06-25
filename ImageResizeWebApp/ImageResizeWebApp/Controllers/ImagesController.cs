@@ -26,6 +26,7 @@ namespace ImageResizeWebApp.Controllers
         public ImagesController(IOptions<AzureStorageConfig> config)
         {
             storageConfig = config.Value;
+            _configuration = configuration;
         }
 
         // POST /api/images/upload
