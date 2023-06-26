@@ -71,7 +71,7 @@
                         </div>
                     </form>
                 </div>
-        <form action="/api/images/addReview" method="post" enctype="application/x-www-form-urlencoded">
+        <form id="addReviewForm" method="post" enctype="application/x-www-form-urlencoded">
             <input class="btn btn-primary" type="text" id="review" name="review"></input>
             <input class="btn btn-primary" type="text" id="imageName" name="imageName"></input>
             <input class="btn btn-primary" type="submit"/>
@@ -107,6 +107,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
 <script>
+
+$(document).ready(function() {
+    $("#addReviewForm").submit(function(event) {
+      event.preventDefault(); // Prevent the default form submission behavior
+
+      var formData = $(this).serialize(); // Serialize the form data
+
+      $.ajax({
+        url: "/api/images/addReview", // Set the URL
+        type: "POST", // Set the HTTP method
+        data: formData, // Set the form data
+        success: function(response) {
+          // Request was successful
+          console.log(response);
+        },
+        error: function(xhr, status, error) {
+          // Request failed
+          console.error(status + ": " + error);
+        }
+      });
+    });
+  });
     
     //
     // // Usage
@@ -213,4 +235,5 @@
             });                    
         }
     };
+
 </script>
