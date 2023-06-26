@@ -117,7 +117,7 @@ namespace ImageResizeWebApp.Controllers
                 var client = account.CreateCloudTableClient();
                 var table = client.GetTableReference("tablestoragegb");
             
-                var condition = TableQuery.GenerateFilterCondition("imageName", QueryComparisons.Equal, imageName);
+                // var condition = TableQuery.GenerateFilterCondition("imageName", QueryComparisons.Equal, imageName);
                 // var query = new TableQuery<ReviewEntity>().Where(condition);
                 // TableQuery query = new TableQuery().Where(TableQuery.GenerateFilterCondition("imageName", QueryComparisons.Equal, imageName)).Take(1);
                 // TableQuery<ReviewEntity> query = new TableQuery<ReviewEntity>().Where("imageName eq '" + imageName +  "'");
