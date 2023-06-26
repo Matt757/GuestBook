@@ -104,6 +104,7 @@ namespace ImageResizeWebApp.Controllers
         public async Task<IActionResult> GetReviews(string imageName)
         {
             string testString = "0";
+            var obj;
             try
             {
                 testString = "1";
@@ -122,7 +123,7 @@ namespace ImageResizeWebApp.Controllers
                 var table = client.GetTableReference("tablestoragegb");
 
                 testString = "4";
-                var obj = new ReviewEntity()
+                obj = new ReviewEntity()
                 {
                     PartitionKey = "unic1", // Must be unique
                     RowKey = "unic1", // Must be unique
@@ -131,9 +132,9 @@ namespace ImageResizeWebApp.Controllers
                 };
 
                 testString = "5";
-                var insertOperation = TableOperation.Insert(obj);
+                var insertOperation = TableOperation.InsertOrMerge(obj);
                 testString = "6";
-                table.Execute(insertOperation);
+                await table.ExecuteAsync(insertOperation);
 
                 return new ObjectResult(imageName);
             }
@@ -141,7 +142,7 @@ namespace ImageResizeWebApp.Controllers
             {
                 // Log the exception or handle it accordingly
                 // You can also return a specific error message in the response
-                return StatusCode(500, "An error occurred: " + ex.Message + "\n" + testString);
+                return StatusCode(500, "An error occurred: " + ex.Message + "\n" + testString + ", " + obj);
             }
         }
         
