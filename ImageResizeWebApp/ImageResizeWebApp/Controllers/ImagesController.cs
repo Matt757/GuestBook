@@ -132,9 +132,9 @@ namespace ImageResizeWebApp.Controllers
 
                 testString = "5";
                 var insertOperation = TableOperation.InsertOrMerge(obj);
+                testString = "6";
                 await table.ExecuteAsync(insertOperation);
 
-                testString = "6";
                 return new ObjectResult(imageName);
             }
             catch (Exception ex)
