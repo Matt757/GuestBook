@@ -119,8 +119,8 @@ namespace ImageResizeWebApp.Controllers
 
                 var obj = new ReviewEntity()
                 {
-                    PartitionKey = Guid.NewGuid().ToString(), // Must be unique
-                    RowKey = Guid.NewGuid().ToString(), // Must be unique
+                    PartitionKey = "unic1", // Must be unique
+                    RowKey = "unic1", // Must be unique
                     review = "test",
                     imageName = "test"
                 };
