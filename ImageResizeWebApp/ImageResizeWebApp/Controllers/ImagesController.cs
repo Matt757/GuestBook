@@ -143,7 +143,7 @@ namespace ImageResizeWebApp.Controllers
             {
                 // Log the exception or handle it accordingly
                 // You can also return a specific error message in the response
-                return StatusCode(500, "An error occurred: " + ex.Message + "\n" + testString + ", " + obj.ToString() + ", ");
+                return StatusCode(500, "An error occurred: " + ex.Message + "\n" + testString + ", " + obj.ToString() + ", " + insertOperation.ToString());
             }
         }
         
