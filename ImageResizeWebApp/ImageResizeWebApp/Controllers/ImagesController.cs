@@ -132,6 +132,19 @@ namespace ImageResizeWebApp.Controllers
             //     return StatusCode(500, "An error occurred: " + ex.Message);
             // }
             
+            
+            Get Storage Information
+            var accountName = "blobstoragegb";
+            var accountKey = "RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==";
+            
+            // Set Auth
+            var creds = new StorageCredentials(accountName, accountKey);
+            var account = new CloudStorageAccount(creds, useHttps: true);
+            
+            // Connect to Storage
+            var client = account.CreateCloudTableClient();
+            var table = client.GetTableReference("tablestoragegb");
+            
             return new ObjectResult(imageName);
         }
         
