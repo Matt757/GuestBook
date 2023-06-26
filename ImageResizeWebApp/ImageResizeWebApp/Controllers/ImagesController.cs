@@ -158,7 +158,7 @@ namespace ImageResizeWebApp.Controllers
             string userImageName = reviewParams.ImageName; 
             var obj = new ReviewEntity()
             {
-                PartitionKey = "unic1", // Must be unique
+                PartitionKey = "unic", // Must be unique
                 RowKey = Guid.NewGuid().ToString(), // Must be unique
                 review = userReview,
                 imageName = userImageName
@@ -208,7 +208,42 @@ namespace ImageResizeWebApp.Controllers
             // var insertOperation = TableOperation.InsertOrMerge(obj);
             // table.ExecuteAsync(insertOperation);
             //
-            return new ObjectResult(userReview + ", " + userImageName);
+            
+            try
+            {
+                testString = "1";
+                // Get Storage Information
+                var accountName = "blobstoragegb";
+                var accountKey = "RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==";
+
+                testString = "2";
+                // Set Auth
+                var creds = new StorageCredentials(accountName, accountKey);
+                var account = new CloudStorageAccount(creds, useHttps: true);
+
+                testString = "3";
+                // Connect to Storage
+                var client = account.CreateCloudTableClient();
+                var table = client.GetTableReference("tablestoragegb");
+
+                testString = "4";
+                
+
+                testString = "5";
+                insertOperation = TableOperation.InsertOrMerge(obj);
+                insertOperationStatus = (insertOperation != null) ? "Yes" : "No";
+                testString = "6";
+                await table.ExecuteAsync(insertOperation);
+
+                return new ObjectResult(userReview + ", " + userImageName);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it accordingly
+                // You can also return a specific error message in the response
+                
+                return StatusCode(500, "An error occurred: " + ex.Message + "\n" + testString + ", " + obj.ToString() + ", InsertOperation: " + insertOperationStatus);
+            }
         }
     }
 }
