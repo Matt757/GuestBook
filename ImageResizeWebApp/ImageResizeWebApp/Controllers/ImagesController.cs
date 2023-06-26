@@ -104,7 +104,7 @@ namespace ImageResizeWebApp.Controllers
         public async Task<IActionResult> GetReviews(string imageName)
         {
             string testString = "0";
-            var insertOperation = null;
+            TableOperation insertOperation = null;
             var obj = new ReviewEntity()
             {
                 PartitionKey = "unic1", // Must be unique
@@ -133,7 +133,7 @@ namespace ImageResizeWebApp.Controllers
                 
 
                 testString = "5";
-                var insertOperation = TableOperation.InsertOrMerge(obj);
+                insertOperation = TableOperation.InsertOrMerge(obj);
                 testString = "6";
                 await table.ExecuteAsync(insertOperation);
 
@@ -143,7 +143,7 @@ namespace ImageResizeWebApp.Controllers
             {
                 // Log the exception or handle it accordingly
                 // You can also return a specific error message in the response
-                return StatusCode(500, "An error occurred: " + ex.Message + "\n" + testString + ", " + obj.ToString() + ", " + insertOperation.ToString());
+                return StatusCode(500, "An error occurred: " + ex.Message + "\n" + testString + ", " + obj.ToString() + ", ");
             }
         }
         
