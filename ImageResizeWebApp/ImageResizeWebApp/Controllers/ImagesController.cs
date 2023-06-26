@@ -154,65 +154,11 @@ namespace ImageResizeWebApp.Controllers
         [HttpPost("addReview")]
         public async Task<IActionResult> AddReview(ReviewParams reviewParams)
         {
-            string userReview = reviewParams.Review;
-            string userImageName = reviewParams.ImageName; 
-            string insertOperationStatus = "";
-            TableOperation insertOperation = null;
-            var obj = new ReviewEntity()
-            {
-                PartitionKey = "unic", // Must be unique
-                RowKey = Guid.NewGuid().ToString(), // Must be unique
-                review = userReview,
-                imageName = userImageName
-            };
-            // // if (fileNames.Count >= 2)
-            // // {
-            // //     // Get the second element using ElementAt() method (index 1)
-            // //     imageName = fileNames.ElementAt(1);
-            // // }
-            // // foreach (var formFile in files)
-            // // {
-            // //     if (StorageHelper.IsString(formFile))
-            // //     {
-            // //         if (formFile.Length > 0)
-            // //         {
-            // //             using (Stream stream = formFile.OpenReadStream())
-            // //             {
-            // //                 isUploaded = await StorageHelper.UploadFileToStorage(stream, formFile.FileName, storageConfig);
-            // //             }
-            // //         }
-            // //     }
-            // //     else
-            // //     {
-            // //         return new UnsupportedMediaTypeResult();
-            // //     }
-            // // }
-            // var obj = new ReviewEntity()
-            // {
-            //     PartitionKey = Guid.NewGuid().ToString(), // Must be unique
-            //     RowKey = Guid.NewGuid().ToString(), // Must be unique
-            //     Review = review,
-            //     ImageName = imageName
-            // };
-            //
-            // // Get Storage Information
-            // var accountName = "blobstoragegb";
-            // var accountKey = "RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==";
-            //
-            // // Set Auth
-            // var creds = new StorageCredentials(accountName, accountKey);
-            // var account = new CloudStorageAccount(creds, useHttps: true);
-            //
-            // // Connect to Storage
-            // var client = account.CreateCloudTableClient();
-            // var table = client.GetTableReference("tablestoragegb");
-            //
-            // var insertOperation = TableOperation.InsertOrMerge(obj);
-            // table.ExecuteAsync(insertOperation);
-            //
-            
             try
             {
+                string userReview = reviewParams.Review;
+                string userImageName = reviewParams.ImageName;
+                
                 // Get Storage Information
                 var accountName = "blobstoragegb";
                 var accountKey = "RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==";
@@ -225,8 +171,14 @@ namespace ImageResizeWebApp.Controllers
                 var client = account.CreateCloudTableClient();
                 var table = client.GetTableReference("tablestoragegb");
                 
-                insertOperation = TableOperation.InsertOrMerge(obj);
-                insertOperationStatus = (insertOperation != null) ? "Yes" : "No";
+                var obj = new ReviewEntity()
+                {
+                    PartitionKey = "unic", // Must be unique
+                    RowKey = Guid.NewGuid().ToString(), // Must be unique
+                    review = userReview,
+                    imageName = userImageName
+                };
+                TableOperation insertOperation = TableOperation.InsertOrMerge(obj);
                 
                 await table.ExecuteAsync(insertOperation);
 
@@ -234,10 +186,7 @@ namespace ImageResizeWebApp.Controllers
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it accordingly
-                // You can also return a specific error message in the response
-                
-                return StatusCode(500, "An error occurred: " + ex.Message + "\n" + obj.ToString() + ", InsertOperation: " + insertOperationStatus);
+                return StatusCode(500, "An error occurred: " + ex.Message);
             }
         }
     }
