@@ -119,7 +119,7 @@ namespace ImageResizeWebApp.Controllers
             
                 var condition = TableQuery.GenerateFilterCondition("imageName", QueryComparisons.Equal, imageName);
                 var query = new TableQuery<ReviewEntity>().Where(condition);
-                var result = table.ExecuteQuery(query);
+                // var result = table.ExecuteQuery(query);
             
                 return new ObjectResult(imageName);
             }
