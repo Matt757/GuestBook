@@ -104,7 +104,13 @@ namespace ImageResizeWebApp.Controllers
         public async Task<IActionResult> GetReviews(string imageName)
         {
             string testString = "0";
-            var obj;
+            var obj = new ReviewEntity()
+            {
+                PartitionKey = "unic1", // Must be unique
+                RowKey = "unic1", // Must be unique
+                review = "test",
+                imageName = "test"
+            };
             try
             {
                 testString = "1";
@@ -123,13 +129,7 @@ namespace ImageResizeWebApp.Controllers
                 var table = client.GetTableReference("tablestoragegb");
 
                 testString = "4";
-                obj = new ReviewEntity()
-                {
-                    PartitionKey = "unic1", // Must be unique
-                    RowKey = "unic1", // Must be unique
-                    review = "test",
-                    imageName = "test"
-                };
+                
 
                 testString = "5";
                 var insertOperation = TableOperation.InsertOrMerge(obj);
