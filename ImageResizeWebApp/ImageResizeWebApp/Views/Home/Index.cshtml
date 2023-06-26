@@ -71,7 +71,7 @@
                         </div>
                     </form>
                 </div>
-        <form action="/api/images/review" method="post" enctype="application/x-www-form-urlencoded">
+        <form action="/api/images/addReview" method="post" enctype="application/x-www-form-urlencoded">
             <input class="btn btn-primary" type="text" id="review" name="review"></input>
             <input class="btn btn-primary" type="text" id="imageName" name="imageName"></input>
             <input class="btn btn-primary" type="submit"/>
@@ -132,14 +132,14 @@
 
     // Grab links for images from backend api
     function fetchImageLinks() {
-        fetch('https://webappgb.azurewebsites.net/api/images/review/Apetri Stefan-Cosmin IMG_1080.jpg', {
-          Method: 'GET',
-          Headers: {
-            Accept: 'application.json',
-            'Content-Type': 'application/json'
-          },
-          Cache: 'default'
-        })
+        // fetch('https://webappgb.azurewebsites.net/api/images/review/Apetri Stefan-Cosmin IMG_1080.jpg', {
+        //   Method: 'GET',
+        //   Headers: {
+        //     Accept: 'application.json',
+        //     'Content-Type': 'application/json'
+        //   },
+        //   Cache: 'default'
+        // })
         // Fetch images
         $.get("api/Images/thumbnails", function(fetchedImageLinks) {
             console.log(fetchedImageLinks)
