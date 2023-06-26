@@ -103,37 +103,39 @@ namespace ImageResizeWebApp.Controllers
         [HttpGet("review/{imageName}")]
         public async Task<IActionResult> GetReviews(string imageName)
         {
-            // Get Storage Information
-            var accountName = "blobstoragegb";
-            var accountKey = "RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==";
-            
-            // Set Auth
-            var creds = new StorageCredentials(accountName, accountKey);
-            var account = new CloudStorageAccount(creds, useHttps: true);
-            
-            // Connect to Storage
-            var client = account.CreateCloudTableClient();
-            var table = client.GetTableReference("tablestoragegb");
-            
-            // // Define the filter condition based on the column value
-            // string filter = $"ColumnName eq '{columnValue}'";
-            //
-            // // Retrieve entities from the table that match the filter condition
-            // AsyncPageable<TableEntity> entities = table.QueryAsync<TableEntity>(filter);
-            // //TODO add value to table to check connection to the table
-            var obj = new ReviewEntity()
+            try
             {
-                PartitionKey = Guid.NewGuid().ToString(), // Must be unique
-                RowKey = Guid.NewGuid().ToString(), // Must be unique
-                review = "test",
-                imageName = "test"
-            };
-            
-            var insertOperation = TableOperation.InsertOrMerge(obj);
-            table.ExecuteAsync(insertOperation);
+                // Get Storage Information
+                var accountName = "blobstoragegb";
+                var accountKey = "RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==";
 
-            
-            return new ObjectResult(imageName);
+                // Set Auth
+                var creds = new StorageCredentials(accountName, accountKey);
+                var account = new CloudStorageAccount(creds, useHttps: true);
+
+                // Connect to Storage
+                var client = account.CreateCloudTableClient();
+                var table = client.GetTableReference("tablestoragegb");
+
+                var obj = new ReviewEntity()
+                {
+                    PartitionKey = Guid.NewGuid().ToString(), // Must be unique
+                    RowKey = Guid.NewGuid().ToString(), // Must be unique
+                    review = "test",
+                    imageName = "test"
+                };
+
+                var insertOperation = TableOperation.InsertOrMerge(obj);
+                await table.ExecuteAsync(insertOperation);
+
+                return new ObjectResult(imageName);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it accordingly
+                // You can also return a specific error message in the response
+                return StatusCode(500, "An error occurred: " + ex.Message);
+            }
         }
         
         
