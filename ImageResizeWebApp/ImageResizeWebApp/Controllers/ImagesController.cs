@@ -125,8 +125,8 @@ namespace ImageResizeWebApp.Controllers
             {
                 PartitionKey = Guid.NewGuid().ToString(), // Must be unique
                 RowKey = Guid.NewGuid().ToString(), // Must be unique
-                Review = "test",
-                ImageName = "test"
+                review = "test",
+                imageName = "test"
             };
             
             var insertOperation = TableOperation.InsertOrMerge(obj);
