@@ -104,7 +104,6 @@ namespace ImageResizeWebApp.Controllers
         public async Task<IActionResult> GetReviews(string imageName)
         {
             string testString = "0";
-            var insertOperation = null;
             var obj = new ReviewEntity()
             {
                 PartitionKey = "unic1", // Must be unique
@@ -133,7 +132,7 @@ namespace ImageResizeWebApp.Controllers
                 
 
                 testString = "5";
-                insertOperation = TableOperation.InsertOrMerge(obj);
+                var insertOperation = TableOperation.InsertOrMerge(obj);
                 testString = "6";
                 await table.ExecuteAsync(insertOperation);
 
