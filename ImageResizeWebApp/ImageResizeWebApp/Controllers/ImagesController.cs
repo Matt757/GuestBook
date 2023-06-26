@@ -145,6 +145,8 @@ namespace ImageResizeWebApp.Controllers
             var client = account.CreateCloudTableClient();
             var table = client.GetTableReference("tablestoragegb");
             
+            var review = table.Query<ReviewEntity>(x => x.imageName == imageName);
+            
             return new ObjectResult(imageName);
         }
         
