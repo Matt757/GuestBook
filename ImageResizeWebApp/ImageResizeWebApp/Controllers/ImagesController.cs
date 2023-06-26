@@ -103,20 +103,25 @@ namespace ImageResizeWebApp.Controllers
         [HttpGet("review/{imageName}")]
         public async Task<IActionResult> GetReviews(string imageName)
         {
+            string testString;
             try
             {
+                testString = "1";
                 // Get Storage Information
                 var accountName = "blobstoragegb";
                 var accountKey = "RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==";
 
+                testString = "2";
                 // Set Auth
                 var creds = new StorageCredentials(accountName, accountKey);
                 var account = new CloudStorageAccount(creds, useHttps: true);
 
+                testString = "3";
                 // Connect to Storage
                 var client = account.CreateCloudTableClient();
                 var table = client.GetTableReference("tablestoragegb");
 
+                testString = "4";
                 var obj = new ReviewEntity()
                 {
                     PartitionKey = "unic1", // Must be unique
@@ -125,16 +130,18 @@ namespace ImageResizeWebApp.Controllers
                     imageName = "test"
                 };
 
+                testString = "5";
                 var insertOperation = TableOperation.InsertOrMerge(obj);
                 await table.ExecuteAsync(insertOperation);
 
+                testString = "6";
                 return new ObjectResult(imageName);
             }
             catch (Exception ex)
             {
                 // Log the exception or handle it accordingly
                 // You can also return a specific error message in the response
-                return StatusCode(500, "An error occurred: " + ex.Message);
+                return StatusCode(500, "An error occurred: " + ex.Message + "\n" + testString);
             }
         }
         
