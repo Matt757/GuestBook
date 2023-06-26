@@ -103,7 +103,7 @@ namespace ImageResizeWebApp.Controllers
         [HttpGet("review/{imageName}")]
         public async Task<IActionResult> GetReviews(string imageName)
         {
-            string testString;
+            string testString = "0";
             try
             {
                 testString = "1";
