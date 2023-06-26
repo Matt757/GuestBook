@@ -105,7 +105,7 @@ namespace ImageResizeWebApp.Controllers
         {
             // Get Storage Information
             var accountName = "blobstoragegb";
-            var accountKey = "RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==";
+            var accountKey = "DefaultEndpointsProtocol=https;AccountName=blobstoragegb;AccountKey=RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==;EndpointSuffix=core.windows.net";
             
             // Set Auth
             var creds = new StorageCredentials(accountName, accountKey);
