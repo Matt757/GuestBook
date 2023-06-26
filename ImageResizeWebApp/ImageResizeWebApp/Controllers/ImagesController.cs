@@ -120,7 +120,8 @@ namespace ImageResizeWebApp.Controllers
                 var condition = TableQuery.GenerateFilterCondition("imageName", QueryComparisons.Equal, imageName);
                 // var query = new TableQuery<ReviewEntity>().Where(condition);
                 // TableQuery query = new TableQuery().Where(TableQuery.GenerateFilterCondition("imageName", QueryComparisons.Equal, imageName)).Take(1);
-                TableQuery query = new TableQuery().Where(condition);
+                // TableQuery<ReviewEntity> query = new TableQuery<ReviewEntity>().Where(condition);
+                var review = table.Query<ReviewEntity>(x => x.imageName == imageName);
                 // var result = table.ExecuteQuery(query);
             
                 return new ObjectResult(imageName);
