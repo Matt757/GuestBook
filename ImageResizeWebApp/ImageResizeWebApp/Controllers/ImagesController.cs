@@ -103,34 +103,36 @@ namespace ImageResizeWebApp.Controllers
         [HttpGet("review/{imageName}")]
         public async Task<IActionResult> GetReviews(string imageName)
         {
-            try
-            {
-                // // Get Storage Information
-                // var accountName = "blobstoragegb";
-                // var accountKey = "RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==";
-                //
-                // // Set Auth
-                // var creds = new StorageCredentials(accountName, accountKey);
-                // var account = new CloudStorageAccount(creds, useHttps: true);
-                //
-                // // Connect to Storage
-                // var client = account.CreateCloudTableClient();
-                // var table = client.GetTableReference("tablestoragegb");
-                //
-                // var condition = TableQuery.GenerateFilterCondition("imageName", QueryComparisons.Equal, imageName);
-                // var query = new TableQuery<ReviewEntity>().Where(condition);
-                // TableQuery query = new TableQuery().Where(TableQuery.GenerateFilterCondition("imageName", QueryComparisons.Equal, imageName)).Take(1);
-                // TableQuery<ReviewEntity> query = new TableQuery<ReviewEntity>().Where("imageName eq '" + imageName +  "'");
-                // var entities = table.ExecuteQuery(new TableQuery<ReviewEntity>()).ToList();
-                // var review = table.Query<ReviewEntity>(x => x.imageName == imageName);
-                // var result = table.ExecuteQuery(query);
+            // try
+            // {
+            //     // // Get Storage Information
+            //     // var accountName = "blobstoragegb";
+            //     // var accountKey = "RK9FSZy7Z1oyKtIbSy8qOilQXW22FwcofWwdp1DoMjchWZDm8R0FVd7BZfx2+xVGsan4/GADAMi6+AStoRfMoQ==";
+            //     //
+            //     // // Set Auth
+            //     // var creds = new StorageCredentials(accountName, accountKey);
+            //     // var account = new CloudStorageAccount(creds, useHttps: true);
+            //     //
+            //     // // Connect to Storage
+            //     // var client = account.CreateCloudTableClient();
+            //     // var table = client.GetTableReference("tablestoragegb");
+            //     //
+            //     // var condition = TableQuery.GenerateFilterCondition("imageName", QueryComparisons.Equal, imageName);
+            //     // var query = new TableQuery<ReviewEntity>().Where(condition);
+            //     // TableQuery query = new TableQuery().Where(TableQuery.GenerateFilterCondition("imageName", QueryComparisons.Equal, imageName)).Take(1);
+            //     // TableQuery<ReviewEntity> query = new TableQuery<ReviewEntity>().Where("imageName eq '" + imageName +  "'");
+            //     // var entities = table.ExecuteQuery(new TableQuery<ReviewEntity>()).ToList();
+            //     // var review = table.Query<ReviewEntity>(x => x.imageName == imageName);
+            //     // var result = table.ExecuteQuery(query);
+            //
+            //     return new ObjectResult(imageName);
+            // }
+            // catch (Exception e)
+            // {
+            //     return StatusCode(500, "An error occurred: " + ex.Message);
+            // }
             
-                return new ObjectResult(imageName);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, "An error occurred: " + ex.Message);
-            }
+            return new ObjectResult(imageName);
         }
         
         
