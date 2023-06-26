@@ -154,9 +154,15 @@ namespace ImageResizeWebApp.Controllers
         [HttpPost("addReview")]
         public async Task<IActionResult> AddReview(ReviewParams reviewParams)
         {
-            string review = reviewParams.Review;
-            string imageName = reviewParams.ImageName; 
-            
+            string userReview = reviewParams.Review;
+            string userImageName = reviewParams.ImageName; 
+            var obj = new ReviewEntity()
+            {
+                PartitionKey = "unic1", // Must be unique
+                RowKey = "unic1", // Must be unique
+                review = userReview,
+                imageName = userImageName
+            };
             // // if (fileNames.Count >= 2)
             // // {
             // //     // Get the second element using ElementAt() method (index 1)
@@ -202,7 +208,7 @@ namespace ImageResizeWebApp.Controllers
             // var insertOperation = TableOperation.InsertOrMerge(obj);
             // table.ExecuteAsync(insertOperation);
             //
-            return new ObjectResult(review + ", " + imageName);
+            return new ObjectResult(userReview + ", " + userImageName);
         }
     }
 }
