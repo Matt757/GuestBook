@@ -151,6 +151,10 @@ namespace ImageResizeWebApp.Controllers
             var query = new TableQuery<ReviewEntity>().Where(condition);
             // var result = table.ExecuteQuery(query);
             
+            var query = from entity in table.CreateQuery<ReviewEntity>()
+                where entity.imageName == imageName
+                select entity;
+            
             return new ObjectResult(imageName);
         }
         
