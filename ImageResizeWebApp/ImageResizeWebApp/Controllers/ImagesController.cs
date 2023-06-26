@@ -104,6 +104,7 @@ namespace ImageResizeWebApp.Controllers
         public async Task<IActionResult> GetReviews(string imageName)
         {
             string testString = "0";
+            var insertOperation = null;
             var obj = new ReviewEntity()
             {
                 PartitionKey = "unic1", // Must be unique
